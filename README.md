@@ -1,3 +1,5 @@
+COMPILED UNFORGED EXECUTABLE IS HERE: /VK_Randomizer/bin/Debug
+
 CHECKSUM SOURCE IS ALWAYS AVAILABLE AT http://continue.su/vkrandom.chksum
 
 VK Randomizer using true RND via RANDOM.ORG seed to determine winner. Has a fancy roulette to enhance tension.
