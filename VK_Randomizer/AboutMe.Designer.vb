@@ -37,9 +37,9 @@ Partial Class AboutMe
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Label1.Location = New System.Drawing.Point(9, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(343, 31)
+        Me.Label1.Size = New System.Drawing.Size(357, 31)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "VK Randomizer version 0.1"
+        Me.Label1.Text = "VK Contest tools version 0.2"
         '
         'Label2
         '

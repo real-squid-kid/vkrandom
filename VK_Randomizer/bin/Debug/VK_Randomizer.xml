@@ -22,17 +22,7 @@ VK_Randomizer
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="P:VK_Randomizer.My.Resources.Resources.choose">
-<summary>
-  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-</summary>
-</member>
 <member name="P:VK_Randomizer.My.Resources.Resources.m10_cursor">
-<summary>
-  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-</summary>
-</member>
-<member name="P:VK_Randomizer.My.Resources.Resources.si_choice">
 <summary>
   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
 </summary>

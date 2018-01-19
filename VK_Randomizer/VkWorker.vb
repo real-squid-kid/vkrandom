@@ -45,6 +45,56 @@ Public Class VkWorker
 
     End Function
 
+    Public Function GetComments(url As String, offset As Integer)
+        ' Usage: https://api.vk.com/method/wall.getComments?owner_id=-11664745&post_id=163355&sort=asc&count=100&version=5.33&offset=0
+        Dim temp As String
+        Dim parts(1) As String
+        temp = Mid(url, 20)
+        parts = Split(temp, "_")
+        Dim webClient As New Net.WebClient With {
+            .Encoding = Text.Encoding.GetEncoding("UTF-8")
+        }
+        Dim gather As String = webClient.DownloadString("https://api.vk.com/method/wall.getComments?owner_id=" & parts(0) & "&post_id=" & parts(1) & "&sort=asc&count=100&version=5.33&offset=" & offset)
+        Dim rawinfo As List(Of String) = gather.Split(",").ToList
+        rawinfo.RemoveAt(0)
+        Dim nom As String = "[" & String.Join(",", rawinfo.ToArray)
+        nom = nom.Substring(0, nom.Length - 1)
+        Dim reposts = JsonConvert.DeserializeObject(Of List(Of Comments_Items))(nom)
+        Debug.WriteLine(gather)
+        Return reposts
+    End Function
+
+    Public Function GetCommentsCount(url As String, offset As Integer)
+        ' Usage: https://api.vk.com/method/wall.getComments?owner_id=-11664745&post_id=163355&sort=asc&count=100&version=5.33&offset=0
+        Dim temp As String
+        Dim parts(1) As String
+        temp = Mid(url, 20)
+        parts = Split(temp, "_")
+        Dim webClient As New Net.WebClient With {
+            .Encoding = Text.Encoding.GetEncoding("UTF-8")
+        }
+        Dim gather As String = webClient.DownloadString("https://api.vk.com/method/wall.getComments?owner_id=" & parts(0) & "&post_id=" & parts(1) & "&sort=asc&count=100&version=5.33&offset=" & offset)
+        Dim rawinfo As List(Of String) = gather.Split(",").ToList
+        Dim number() As String = rawinfo(0).Split("[")
+        Dim done As Integer
+        done = Int(number(1))
+        Return done
+    End Function
+
+    Public Function GetRepostsSmart(url As String, filter As String, offset As String)
+        ' https://api.vk.com/method/likes.getList?type=post&owner_id=-51016572&item_id=839965&filter=likes&offset=1&extended=true
+        Dim temp As String
+        Dim parts(1) As String
+        temp = Mid(url, 20)
+        parts = Split(temp, "_")
+        Dim webClient As New Net.WebClient With {
+            .Encoding = Text.Encoding.GetEncoding("UTF-8")
+        }
+        Dim gather As String = webClient.DownloadString("https://api.vk.com/method/likes.getList?type=post&owner_id=" & parts(0) & "&item_id=" & parts(1) & "&filter=" & filter & "&offset=" & offset & "&extended=true")
+        Dim reposts = JsonConvert.DeserializeObject(Of Reposts_Container)(gather)
+        Return reposts.response.items
+    End Function
+
     Public Function GetName(e As String)
         'Gets an uid, like 209526225
         'Uses like this: https://api.vk.com/method/users.get?user_ids=209526225,1500515&name_case=Nom
@@ -64,6 +114,32 @@ Public Class VkWorker
             Return ret
         Catch ex As Exception
             MessageBox.Show("Strange behaviour of VK Server while getting names: " & ex.Message)
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function CheckMembership(uid As Integer, group As String)
+        'https://api.vk.com/method/groups.isMember?group_id=msi_russia&user_id=209526225&access_token=00000000000
+        Dim webClient As New Net.WebClient With {
+            .Encoding = Text.Encoding.GetEncoding("UTF-8")
+        }
+        Dim gather As String = webClient.DownloadString("https://api.vk.com/method/groups.isMember?group_id=" & group & "&user_id=" & uid & "&access_token=" & My.Settings.VKToken)
+        ' Dim parsed As Membership_Container = JsonConvert.DeserializeObject(Of Membership_Container)(gather)
+        '  Return parsed.response
+        Return gather
+    End Function
+
+    Public Function CheckLogin()
+        'https://api.vk.com/method/account.getProfileInfo?access_token=00000000000
+        Dim webClient As New Net.WebClient With {
+            .Encoding = Text.Encoding.GetEncoding("UTF-8")
+        }
+        Dim gather As String = webClient.DownloadString("https://api.vk.com/method/account.getProfileInfo?access_token=" & My.Settings.VKToken)
+        Try
+            Dim parsed As Profile_Container = JsonConvert.DeserializeObject(Of Profile_Container)(gather)
+            Dim result = parsed.response
+            Return result
+        Catch ex As Exception
             Return Nothing
         End Try
     End Function
@@ -132,6 +208,39 @@ End Class
 Public Class Name_Container
     Public response() As Name_Result
 End Class
+
+Public Class Reposts_Container
+    Public response As Reposts_Items
+End Class
+
+Public Class Comments_Container
+    Public stuff As Comments_Items
+End Class
+
+Public Class Profile_Container
+    Public response As Profile_Items
+End Class
+
+Public Class Profile_Items
+    Public Property first_name() As String
+    Public Property last_name() As String
+End Class
+
+Public Class Comments_Items
+    Public Property cid() As String
+    Public Property from_id() As String
+    Public Property text() As String
+End Class
+
+Public Class Reposts_Items
+    Public Property count As Integer
+    Public Property items() As List(Of Name_Result)
+End Class
+
+Public Class Membership_Container
+    Public response As String
+End Class
+
 
 Public Class Name_Result
     Public uid As Integer

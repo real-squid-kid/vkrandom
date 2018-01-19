@@ -106,6 +106,12 @@
     <Compile Include="Screen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VKLoginForm.Designer.vb">
+      <DependentUpon>VKLoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VKLoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VkWorker.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -124,8 +130,12 @@
     <EmbeddedResource Include="Screen.resx">
       <DependentUpon>Screen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VKLoginForm.resx">
+      <DependentUpon>VKLoginForm.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

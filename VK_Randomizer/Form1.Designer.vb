@@ -39,6 +39,12 @@ Partial Class Form1
         Me.SpeedTxt = New System.Windows.Forms.TextBox()
         Me.TrustLbl = New System.Windows.Forms.Label()
         Me.AboutBtn = New System.Windows.Forms.Button()
+        Me.SaveListBtn = New System.Windows.Forms.Button()
+        Me.CommentsBtn = New System.Windows.Forms.Button()
+        Me.CommentsGetter = New System.ComponentModel.BackgroundWorker()
+        Me.VkStatusLbl = New System.Windows.Forms.Label()
+        Me.VKLoginBtn = New System.Windows.Forms.Button()
+        Me.MembershipChk = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -68,17 +74,17 @@ Partial Class Form1
         '
         'ListTxt
         '
-        Me.ListTxt.Location = New System.Drawing.Point(16, 65)
+        Me.ListTxt.Location = New System.Drawing.Point(16, 78)
         Me.ListTxt.Multiline = True
         Me.ListTxt.Name = "ListTxt"
         Me.ListTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.ListTxt.Size = New System.Drawing.Size(293, 292)
+        Me.ListTxt.Size = New System.Drawing.Size(293, 279)
         Me.ListTxt.TabIndex = 3
         '
         'ConsoleLbl
         '
         Me.ConsoleLbl.AutoSize = True
-        Me.ConsoleLbl.Location = New System.Drawing.Point(102, 41)
+        Me.ConsoleLbl.Location = New System.Drawing.Point(15, 62)
         Me.ConsoleLbl.Name = "ConsoleLbl"
         Me.ConsoleLbl.Size = New System.Drawing.Size(41, 13)
         Me.ConsoleLbl.TabIndex = 4
@@ -101,7 +107,7 @@ Partial Class Form1
         Me.DrawBtn.Enabled = False
         Me.DrawBtn.Location = New System.Drawing.Point(16, 392)
         Me.DrawBtn.Name = "DrawBtn"
-        Me.DrawBtn.Size = New System.Drawing.Size(203, 23)
+        Me.DrawBtn.Size = New System.Drawing.Size(122, 23)
         Me.DrawBtn.TabIndex = 6
         Me.DrawBtn.Text = "D R A W"
         Me.DrawBtn.UseVisualStyleBackColor = True
@@ -167,11 +173,64 @@ Partial Class Form1
         Me.AboutBtn.Text = "About..."
         Me.AboutBtn.UseVisualStyleBackColor = True
         '
+        'SaveListBtn
+        '
+        Me.SaveListBtn.Location = New System.Drawing.Point(144, 392)
+        Me.SaveListBtn.Name = "SaveListBtn"
+        Me.SaveListBtn.Size = New System.Drawing.Size(75, 23)
+        Me.SaveListBtn.TabIndex = 12
+        Me.SaveListBtn.Text = "Save list..."
+        Me.SaveListBtn.UseVisualStyleBackColor = True
+        '
+        'CommentsBtn
+        '
+        Me.CommentsBtn.Location = New System.Drawing.Point(102, 36)
+        Me.CommentsBtn.Name = "CommentsBtn"
+        Me.CommentsBtn.Size = New System.Drawing.Size(89, 23)
+        Me.CommentsBtn.TabIndex = 2
+        Me.CommentsBtn.Text = "Get Comments"
+        Me.CommentsBtn.UseVisualStyleBackColor = True
+        '
+        'CommentsGetter
+        '
+        '
+        'VkStatusLbl
+        '
+        Me.VkStatusLbl.AutoSize = True
+        Me.VkStatusLbl.Location = New System.Drawing.Point(15, 543)
+        Me.VkStatusLbl.Name = "VkStatusLbl"
+        Me.VkStatusLbl.Size = New System.Drawing.Size(51, 13)
+        Me.VkStatusLbl.TabIndex = 13
+        Me.VkStatusLbl.Text = "VKStatus"
+        '
+        'VKLoginBtn
+        '
+        Me.VKLoginBtn.Location = New System.Drawing.Point(234, 538)
+        Me.VKLoginBtn.Name = "VKLoginBtn"
+        Me.VKLoginBtn.Size = New System.Drawing.Size(75, 23)
+        Me.VKLoginBtn.TabIndex = 14
+        Me.VKLoginBtn.Text = "Log in..."
+        Me.VKLoginBtn.UseVisualStyleBackColor = True
+        '
+        'MembershipChk
+        '
+        Me.MembershipChk.AutoSize = True
+        Me.MembershipChk.Location = New System.Drawing.Point(197, 40)
+        Me.MembershipChk.Name = "MembershipChk"
+        Me.MembershipChk.Size = New System.Drawing.Size(116, 17)
+        Me.MembershipChk.TabIndex = 15
+        Me.MembershipChk.Text = "Check membership"
+        Me.MembershipChk.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(328, 509)
+        Me.ClientSize = New System.Drawing.Size(328, 573)
+        Me.Controls.Add(Me.MembershipChk)
+        Me.Controls.Add(Me.VKLoginBtn)
+        Me.Controls.Add(Me.VkStatusLbl)
+        Me.Controls.Add(Me.SaveListBtn)
         Me.Controls.Add(Me.AboutBtn)
         Me.Controls.Add(Me.TrustLbl)
         Me.Controls.Add(Me.SpeedTxt)
@@ -182,13 +241,17 @@ Partial Class Form1
         Me.Controls.Add(Me.DrawBtn)
         Me.Controls.Add(Me.ConsoleLbl)
         Me.Controls.Add(Me.ListTxt)
+        Me.Controls.Add(Me.CommentsBtn)
         Me.Controls.Add(Me.LikesBtn)
         Me.Controls.Add(Me.AddressTxt)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ProgressBar1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form1"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -211,4 +274,10 @@ Partial Class Form1
     Friend WithEvents SpeedTxt As TextBox
     Friend WithEvents TrustLbl As Label
     Friend WithEvents AboutBtn As Button
+    Friend WithEvents SaveListBtn As Button
+    Friend WithEvents CommentsBtn As Button
+    Friend WithEvents CommentsGetter As System.ComponentModel.BackgroundWorker
+    Friend WithEvents VkStatusLbl As Label
+    Friend WithEvents VKLoginBtn As Button
+    Friend WithEvents MembershipChk As CheckBox
 End Class
